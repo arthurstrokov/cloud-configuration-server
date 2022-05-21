@@ -1,0 +1,24 @@
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: ${POSTGRES_DB:jdbc:postgresql://localhost:5432/cloud-spring-boot-rest-app_db}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:root}
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 60000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        show_sql: false
+    hibernate:
+      ddl-auto: update
+
+  application:
+    admin:
+      enabled: true
