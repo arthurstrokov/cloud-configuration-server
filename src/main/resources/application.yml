@@ -1,12 +1,11 @@
 spring:
-  application:
-    name: test-spring-boot-cloud-configuration
   profiles:
-    active: dev
-  config:
-    import: 'optional:configserver:'
+    active: native
   cloud:
     config:
-      uri: http://localhost:8888/
-      enabled: true
-      failFast: true
+      server:
+        native:
+          search-locations: classpath:/configuration/{application}
+
+server:
+  port: 8888

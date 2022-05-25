@@ -1,13 +1,13 @@
-package com.gmail.arthurstrokov.app;
+package com.gmail.arthurstrokov.demoapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootAppTests {
+class DemoAppApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
