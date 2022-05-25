@@ -7,7 +7,7 @@ spring:
     import: 'optional:configserver:'
   cloud:
     config:
-#      uri: http://localhost:8888/
+#      uri: http://localhost:8888/ only for local using
       uri: https://spring-boot-cloud-config.herokuapp.com
       enabled: true
-      failFast: false
+      failFast: true
