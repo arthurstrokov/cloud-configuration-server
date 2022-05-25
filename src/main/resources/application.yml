@@ -6,6 +6,6 @@ spring:
       server:
         native:
           search-locations: classpath:/configuration/{application}
-
-#server: only for local using
+# only for local using
+#server:
 #  port: 8888
