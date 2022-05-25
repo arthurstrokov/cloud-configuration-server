@@ -10,4 +10,4 @@ spring:
 #      uri: http://localhost:8888/ only for local using
       uri: https://spring-boot-cloud-config.herokuapp.com
       enabled: true
-      failFast: true
+      failFast: false
