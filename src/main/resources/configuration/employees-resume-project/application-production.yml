@@ -11,6 +11,7 @@ spring:
       maximum-pool-size: 5
       connection-timeout: 60000
   jpa:
+    open-in-view: false # Swagger need disable OSIV (Open Session in View)
     hibernate:
       ddl-auto: none # Set database Schema
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect # SQL Dialect

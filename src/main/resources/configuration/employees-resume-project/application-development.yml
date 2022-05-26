@@ -7,6 +7,7 @@ spring:
     username: sa
     password:
   jpa:
+    open-in-view: false # Swagger need disable OSIV (Open Session in View)
     defer-datasource-initialization: true # Initialize a Database add from .sql
     #    show-sql: true # Show SQL
     hibernate:
