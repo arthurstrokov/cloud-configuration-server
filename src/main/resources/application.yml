@@ -1,4 +1,6 @@
 spring:
+  main:
+    banner-mode: "off" # Set off banner
   profiles:
     active: native
   cloud:
@@ -7,5 +9,5 @@ spring:
         native:
           search-locations: classpath:/configuration/{application}
 # only for local using
-#server:
-#  port: 8888
+server:
+  port: 8888

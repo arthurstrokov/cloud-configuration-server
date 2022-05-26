@@ -1,3 +1,17 @@
 spring:
   main:
     banner-mode: "off" # Set off banner
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_DB:jdbc:postgresql://localhost:5432/employees_resume_db}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:root}
+    initialization-mode: never
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 60000
+  jpa:
+    hibernate:
+      ddl-auto: none # Set database Schema
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect # SQL Dialect
+    show-sql: false # Show SQL
