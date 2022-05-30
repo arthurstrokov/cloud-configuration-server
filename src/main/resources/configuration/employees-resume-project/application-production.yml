@@ -15,4 +15,6 @@ spring:
     hibernate:
       ddl-auto: none # Set database Schema
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect # SQL Dialect
-    show-sql: false # Show SQL
+    show-sql: true # Show SQL
+server:
+  port: 8080
