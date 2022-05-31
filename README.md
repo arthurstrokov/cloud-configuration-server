@@ -1,3 +1,1 @@
-﻿# spring-boot-cloud-configuration
-
-    git push heroku master
+﻿# spring-boot-cloud-configuration   
