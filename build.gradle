@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.bmuschko.docker-spring-boot-application' version '7.4.0'
 }
 
 group = 'com.gmail.arthurstrokov'
@@ -31,4 +32,13 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+docker {
+    springBootApplication {
+        baseImage = 'openjdk:11'
+        ports = [8888]
+        images = ['arthurstrokov/spring-boot-cloud-configuration:latest']
+        jvmArgs = ['-Dspring.profiles.active=native', '-Xmx2048m']
+    }
 }
