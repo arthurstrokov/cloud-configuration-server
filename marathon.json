@@ -1,0 +1,38 @@
+{
+  "id": "spring-boot-cloud-configuration",
+  "cmd": null,
+  "cpus": 0.5,
+  "mem": 32.0,
+  "disk": 0,
+  "instances": 1,
+  "networks": [
+    {
+      "mode": "container/bridge"
+    }
+  ],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "arthurstrokov/spring-boot-cloud-configuration:latest"
+    },
+    "portMappings": [
+      {
+        "containerPort": 8888,
+        "hostPort": 8888
+      }
+    ]
+  },
+  "healthChecks": [
+    {
+      "protocol": "COMMAND",
+      "command": {
+        "value": "pwd"
+      },
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ]
+}
