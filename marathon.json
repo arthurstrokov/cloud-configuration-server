@@ -2,7 +2,7 @@
   "id": "spring-boot-cloud-configuration",
   "cmd": null,
   "cpus": 0.5,
-  "mem": 32.0,
+  "mem": 256.0,
   "disk": 0,
   "instances": 1,
   "networks": [
