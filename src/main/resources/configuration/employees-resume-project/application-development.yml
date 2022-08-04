@@ -18,4 +18,4 @@ spring:
         show_sql: true # Show SQL
         format_sql: true # Pretty print the SQL
 server:
-  port: 8081
+  port: 8080
