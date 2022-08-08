@@ -13,10 +13,12 @@
   "container": {
     "type": "DOCKER",
     "docker": {
+      "network" : "BRIDGE",
       "image": "arthurstrokov/spring-boot-cloud-configuration:latest"
     },
     "portMappings": [
       {
+        "protocol": "tcp",
         "containerPort": 8888,
         "hostPort": 8888
       }
