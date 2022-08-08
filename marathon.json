@@ -5,22 +5,17 @@
   "mem": 256.0,
   "disk": 0,
   "instances": 1,
-  "networks": [
-    {
-      "mode": "container/bridge"
-    }
-  ],
   "container": {
     "type": "DOCKER",
     "docker": {
-      "network" : "BRIDGE",
-      "image": "arthurstrokov/spring-boot-cloud-configuration:latest"
+      "image": "arthurstrokov/spring-boot-cloud-configuration:latest",
+      "network": "BRIDGE"
     },
     "portMappings": [
       {
-        "protocol": "tcp",
         "containerPort": 8888,
-        "hostPort": 8888
+        "hostPort": 8888,
+        "protocol": "tcp"
       }
     ]
   },
