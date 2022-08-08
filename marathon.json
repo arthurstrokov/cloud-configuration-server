@@ -18,7 +18,8 @@
     "portMappings": [
       {
         "containerPort": 8888,
-        "hostPort": 8888
+        "hostPort": 8888,
+        "protocol": "tcp"
       }
     ]
   },
