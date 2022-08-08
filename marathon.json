@@ -36,8 +36,6 @@
     }
   ],
   "labels": {
-    "HAPROXY_DEPLOYMENT_GROUP": "spring-boot-cloud-configuration",
-    "HAPROXY_GROUP": "external",
-    "HAPROXY_0_REDIRECT_TO_HTTPS": "true"
+    "HAPROXY_GROUP": "external"
   }
 }
