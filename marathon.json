@@ -25,6 +25,15 @@
   },
   "healthChecks": [
     {
+      "protocol": "HTTP",
+      "path": "/actuator/health",
+      "gracePeriodSeconds": 3,
+      "intervalSeconds": 10,
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    },
+    {
       "protocol": "COMMAND",
       "command": {
         "value": "pwd"
