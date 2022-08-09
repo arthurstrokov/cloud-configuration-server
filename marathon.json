@@ -25,24 +25,14 @@
   },
   "healthChecks": [
     {
-      "protocol": "HTTP",
-      "path": "/actuator/health",
-      "gracePeriodSeconds": 3,
-      "intervalSeconds": 10,
-      "portIndex": 0,
-      "timeoutSeconds": 10,
-      "maxConsecutiveFailures": 3
-    },
-    {
       "protocol": "COMMAND",
       "command": {
-        "value": "pwd"
+        "value": "curl -f -X GET http://localhost:8888/actuator/health"
       },
       "gracePeriodSeconds": 300,
       "intervalSeconds": 60,
       "timeoutSeconds": 20,
-      "maxConsecutiveFailures": 3,
-      "ignoreHttp1xx": false
+      "maxConsecutiveFailures": 3
     }
   ],
   "labels": {
