@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'com.bmuschko.docker-spring-boot-application' version '7.4.0'
+    id 'com.bmuschko.docker-remote-api' version '7.3.0'
 }
 
 group = 'com.gmail.arthurstrokov'
@@ -21,8 +22,9 @@ ext {
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.2'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
@@ -39,7 +41,28 @@ docker {
     springBootApplication {
         baseImage = 'openjdk:11'
         ports = [8888]
-        images = ['arthurstrokov/spring-boot-cloud-configuration:latest']
+        images = ['arthurstrokov/cloud-configuration-server:latest']
         jvmArgs = ['-Dspring.profiles.active=native', '-Xmx2048m']
     }
+}
+
+import com.bmuschko.gradle.docker.tasks.container.*
+import com.bmuschko.gradle.docker.tasks.image.*
+
+task removeContainer(type: DockerRemoveContainer) {
+    force = true
+    containerId = 'cloud-configuration-server'
+    onError(ex -> print ex.getMessage())
+}
+
+task removeImage(type: DockerRemoveImage) {
+    dependsOn removeContainer
+    force = true
+    targetImageId('arthurstrokov/cloud-configuration-server')
+    onError(ex -> print ex.getMessage())
+}
+
+task("re-create") {
+    group 'docker'
+    dependsOn dockerBuildImage
 }
