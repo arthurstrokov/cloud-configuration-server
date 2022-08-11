@@ -1,41 +1,55 @@
 {
-  "id": "spring-boot-cloud-configuration",
-  "cmd": null,
-  "cpus": 0.5,
-  "mem": 256.0,
-  "disk": 0,
-  "instances": 1,
-  "networks": [
-    {
-      "mode": "container/bridge"
-    }
-  ],
-  "container": {
-    "type": "DOCKER",
-    "docker": {
-      "image": "arthurstrokov/spring-boot-cloud-configuration:latest"
-    },
-    "portMappings": [
-      {
-        "containerPort": 8888,
-        "hostPort": 8888,
-        "protocol": "tcp"
-      }
-    ]
-  },
-  "healthChecks": [
-    {
-      "protocol": "COMMAND",
-      "command": {
-        "value": "curl -f -X GET http://localhost:8888/actuator/health"
+   "id":"spring-boot-cloud-configuration",
+   "cmd":null,
+   "cpus":0.5,
+   "mem":256.0,
+   "disk":0,
+   "instances":1,
+   "labels":{
+      "HAPROXY_GROUP":"external"
+   },
+   "container":{
+      "type":"DOCKER",
+      "docker":{
+         "image":"arthurstrokov/spring-boot-cloud-configuration:latest",
+         "forcePullImage":true,
+         "network":"BRIDGE"
       },
-      "gracePeriodSeconds": 300,
-      "intervalSeconds": 60,
-      "timeoutSeconds": 20,
-      "maxConsecutiveFailures": 3
-    }
-  ],
-  "labels": {
-    "HAPROXY_GROUP": "external"
-  }
+      "portMappings":[
+         {
+            "protocol":"tcp",
+            "hostPort":0,
+            "containerPort":8888,
+            "servicePort":8888,
+            "name":"cloud-configuration-api"
+         }
+      ]
+   },
+   "upgradeStrategy":{
+      "minimumHealthCapacity":0,
+      "maximumOverCapacity":1
+   },
+   "healthChecks":[
+      {
+         "protocol":"COMMAND",
+         "command":{
+            "value":"curl -f -X GET http://localhost:8888/actuator/health"
+         },
+         "gracePeriodSeconds":300,
+         "intervalSeconds":60,
+         "timeoutSeconds":20,
+         "maxConsecutiveFailures":3
+      },
+      {
+         "protocol":"COMMAND",
+         "command":{
+            "value":"pwd"
+         },
+         "gracePeriodSeconds":300,
+         "intervalSeconds":60,
+         "timeoutSeconds":20,
+         "maxConsecutiveFailures":3,
+         "ignoreHttp1xx":false
+      }
+   ]
 }
