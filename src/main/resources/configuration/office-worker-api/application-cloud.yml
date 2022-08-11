@@ -1,0 +1,25 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: test
+#      authentication-database: admin
+
+api:
+  gateway: ${GATEWAY_SERVICE:GATEWAY}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URI}
+  instance:
+    hostname: ${HOST_NAME:office-worker-api}
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
+
+server:
+  port: 8080
