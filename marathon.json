@@ -1,43 +1,89 @@
 {
-  "id": "spring-boot-cloud-configuration",
+  "id": "/cloud-configuration-server",
   "cmd": null,
-  "cpus": 0.5,
-  "mem": 256.0,
+  "cpus": 0.1,
+  "mem": 256,
   "disk": 0,
   "instances": 1,
-  "networks": [
-    {
-      "mode": "container/bridge"
-    }
+  "acceptedResourceRoles": [
+    "*"
   ],
   "container": {
     "type": "DOCKER",
     "docker": {
-      "network" : "BRIDGE",
-      "image": "arthurstrokov/spring-boot-cloud-configuration:latest"
+      "forcePullImage": false,
+      "image": "arthurstrokov/cloud-configuration-server:latest",
+      "parameters": [],
+      "privileged": false
     },
+    "volumes": [],
     "portMappings": [
       {
-        "protocol": "tcp",
         "containerPort": 8888,
-        "hostPort": 8888
+        "hostPort": 0,
+        "labels": {},
+        "protocol": "tcp",
+        "servicePort": 0
       }
     ]
   },
+  "env": {
+    "CONTAINER_NAME": "cloud-configuration-server"
+  },
   "healthChecks": [
     {
+      "command": {
+        "value": "curl -f -X GET http://host.docker.internal/cloud-configuration-server",
+        "_comment": "curl -f -X GET http://localhost:8888/actuator/health"
+      },
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "maxConsecutiveFailures": 3,
       "protocol": "COMMAND",
+      "ipProtocol": "IPv4",
+      "timeoutSeconds": 20,
+      "delaySeconds": 15
+    },
+    {
       "command": {
         "value": "pwd"
       },
       "gracePeriodSeconds": 300,
       "intervalSeconds": 60,
-      "timeoutSeconds": 20,
       "maxConsecutiveFailures": 3,
-      "ignoreHttp1xx": false
+      "protocol": "COMMAND",
+      "ipProtocol": "IPv4",
+      "timeoutSeconds": 20,
+      "delaySeconds": 15
+    },
+    {
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "portIndex": 0,
+      "protocol": "MESOS_TCP",
+      "ipProtocol": "IPv4",
+      "timeoutSeconds": 10,
+      "delaySeconds": 15
     }
   ],
   "labels": {
-    "HAPROXY_GROUP": "external"
+    "HAPROXY_GROUP": "local",
+    "HAPROXY_0_HTTP_BACKEND_PROXYPASS_PATH": "/cloud-configuration-server",
+    "HAPROXY_0_VHOST": "host.docker.internal",
+    "HAPROXY_0_PATH": "-i /cloud-configuration-server"
+  },
+  "networks": [
+    {
+      "mode": "container/bridge"
+    }
+  ],
+  "portDefinitions": [],
+  "backoffFactor": 2,
+  "backoffSeconds": 30,
+  "maxLaunchDelaySeconds": 86400,
+  "upgradeStrategy": {
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 0.5
   }
 }
