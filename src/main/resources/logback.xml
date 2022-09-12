@@ -9,6 +9,7 @@
             <customFields>{"application_name" : "cloud-configuration-server"}</customFields>
         </encoder>
     </appender>
+
     <root level="info">
         <appender-ref ref="logstash"/>
     </root>
