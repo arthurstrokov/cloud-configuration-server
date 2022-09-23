@@ -33,7 +33,7 @@
   "healthChecks": [
     {
       "command": {
-        "value": "curl -f -X GET http://host.docker.internal/cloud-configuration-server",
+        "value": "curl -f -X GET http://host.docker.internal/cloud-configuration-server/health",
         "_comment": "curl -f -X GET http://localhost:8888/actuator/health"
       },
       "gracePeriodSeconds": 300,
