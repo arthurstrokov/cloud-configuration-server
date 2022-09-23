@@ -55,16 +55,6 @@
       "ipProtocol": "IPv4",
       "timeoutSeconds": 20,
       "delaySeconds": 15
-    },
-    {
-      "gracePeriodSeconds": 300,
-      "intervalSeconds": 20,
-      "maxConsecutiveFailures": 3,
-      "portIndex": 0,
-      "protocol": "MESOS_TCP",
-      "ipProtocol": "IPv4",
-      "timeoutSeconds": 10,
-      "delaySeconds": 15
     }
   ],
   "labels": {
