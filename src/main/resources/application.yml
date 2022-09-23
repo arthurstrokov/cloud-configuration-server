@@ -13,3 +13,21 @@ spring:
       server:
         native:
           search-locations: classpath:/configuration/{application}
+---
+# Конфиг для актуатора, чтобы был доступен по /metrics для прометея
+management:
+  #  server: # в идеале метрики на отдельный порт
+  #    port: 8889
+  endpoint:
+    prometheus:
+      enabled: true
+  # Открываем эндпоинты (только прометей) и переопределяем эндпоинт их на /metrics
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus", "*" ]
+      base-path: "/"
+      path-mapping:
+        prometheus: metrics
+#        enable:
+#          http_server_requests: true
