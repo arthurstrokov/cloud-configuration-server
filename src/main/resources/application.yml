@@ -13,6 +13,8 @@ spring:
       server:
         native:
           search-locations: classpath:/configuration/{application}
+  zipkin:
+    base-url: http://host.docker.internal:9411
 ---
 # Конфиг для актуатора, чтобы был доступен по /metrics для прометея
 management:
