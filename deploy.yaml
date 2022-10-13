@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: cloud-configuration-server
+  name: cloud-configuration-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: cloud-configuration-server
+  template:
+    metadata:
+      labels:
+        run: cloud-configuration-server
+        visualize: "true"
+    spec:
+      containers:
+        - name: cloud-configuration-server
+          image: arthurstrokov/cloud-configuration-server:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: cloud-configuration-server
+  name: cloud-configuration-server
+  annotations:
+    haproxy.org/check: "enabled"
+    haproxy.org/forwarded-for: "enabled"
+    haproxy.org/load-balance: "roundrobin"
+    haproxy.org/path-rewrite: /
+spec:
+  selector:
+    run: cloud-configuration-server
+  ports:
+    - name: port-1
+      port: 8888
+      protocol: TCP
+      targetPort: 8888
+  type: LoadBalancer
