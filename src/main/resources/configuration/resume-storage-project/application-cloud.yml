@@ -7,30 +7,58 @@ spring:
     hikari:
       maximum-pool-size: 5
       connection-timeout: 60000
+
   jpa:
-    #    defer-datasource-initialization: true # Initialize a Database
-    #    show-sql: true # Show SQL if needed
     open-in-view: false # Swagger need disable OSIV (Open Session in View)
     hibernate:
-      ddl-auto: create-drop # Set database Schema
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        show_sql: false # Show SQL
+        show_sql: false
         format_sql: false
         jdbc:
           lob:
             non_contextual_creation: true
+
+  zipkin:
+    base-url: http://host.docker.internal:9411
+
+  flyway:
+    enabled: true
+    schemas: public # default
+    baseline-on-migrate: true
+
+  devtools:
+    remote:
+      secret: secret
+
   application:
     admin:
       enabled: true
-  sql:
-    init:
-      mode: always #spring.datasource.initialization-mode=always deprecated
+
   jackson:
     serialization:
       indent-output: true # Set pretty JSON response
-
+---
+springdoc:
+  swagger-ui:
+    path: /swagger
+---
 server:
   error:
     include-stacktrace: on_param # Remove 'trace' from Response body
+---
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus", "*" ]
+      base-path: "/"
+      path-mapping:
+        prometheus: metrics
+#        enable:
+#          http_server_requests: true
