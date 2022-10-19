@@ -18,8 +18,11 @@ spec:
     spec:
       containers:
         - name: cloud-configuration-server
-          image: arthurstrokov/cloud-configuration-server:latest
+          image: arthurstrokov/cloud-configuration-server:v1.8
           imagePullPolicy: IfNotPresent
+          env:
+            - name: spring.mvc.servlet.path
+              value: /cloud-configuration-server
           ports:
             - containerPort: 8888
 ---

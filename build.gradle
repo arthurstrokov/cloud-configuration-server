@@ -49,7 +49,10 @@ docker {
     springBootApplication {
         baseImage = 'openjdk:11'
         ports = [8888]
-        images = ['arthurstrokov/cloud-configuration-server:latest']
+        images = [
+                'arthurstrokov/cloud-configuration-server:latest',
+                  'arthurstrokov/cloud-configuration-server:v1.8'
+        ]
         jvmArgs = ['-Dspring.profiles.active=native', '-Xmx2048m']
     }
 }
