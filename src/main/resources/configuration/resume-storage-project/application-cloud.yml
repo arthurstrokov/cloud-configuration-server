@@ -1,7 +1,7 @@
 spring:
   datasource: # Set database properties
     driver-class-name: org.postgresql.Driver
-    url: ${POSTGRES_DB:jdbc:postgresql://host.docker.internal:5432/resume_storage_project_db} # postgres_database localhost
+    url: ${POSTGRES_DB:jdbc:postgresql://10.0.2.2:5432/resume_storage_project_db} # postgres_database localhost
     username: ${POSTGRES_USER:root}
     password: ${POSTGRES_PASSWORD:root}
     hikari:
@@ -22,7 +22,7 @@ spring:
             non_contextual_creation: true
 
   zipkin:
-    base-url: http://host.docker.internal:9411
+    base-url: http://10.0.2.2:9411
 
   flyway:
     enabled: true

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: cloud-configuration-server
-          image: arthurstrokov/cloud-configuration-server:v1.8
+          image: arthurstrokov/cloud-configuration-server:v1.9
           imagePullPolicy: IfNotPresent
           env:
             - name: spring.mvc.servlet.path

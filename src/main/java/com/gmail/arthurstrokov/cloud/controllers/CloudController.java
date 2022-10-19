@@ -13,7 +13,7 @@ public class CloudController {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello!";
+        return "Hello! I'm cloud-configuration-server.";
     }
 
     @GetMapping("/dev")
