@@ -51,7 +51,7 @@ docker {
         ports = [8888]
         images = [
                 'arthurstrokov/cloud-configuration-server:latest',
-                  'arthurstrokov/cloud-configuration-server:v1.9'
+                  'arthurstrokov/cloud-configuration-server:v2.0'
         ]
         jvmArgs = ['-Dspring.profiles.active=native', '-Xmx2048m']
     }

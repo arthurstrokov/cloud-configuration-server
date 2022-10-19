@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CloudController {
 
-    @GetMapping("/")
+    @GetMapping
     public String hello() {
         return "Hello! I'm cloud-configuration-server.";
     }
