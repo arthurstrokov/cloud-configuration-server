@@ -62,3 +62,8 @@ management:
         prometheus: metrics
 #        enable:
 #          http_server_requests: true
+
+logging:
+  level:
+    root: info
+    org.springframework.cloud.config.client: debug
