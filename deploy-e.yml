@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: cloud-configuration-server
+  name: cloud-configuration-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: cloud-configuration-server
+  template:
+    metadata:
+      labels:
+        run: cloud-configuration-server
+        visualize: "true"
+    spec:
+      containers:
+        - name: cloud-configuration-server
+          image: arthurstrokov/cloud-configuration-server:v0.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: cloud-configuration-server
+  name: cloud-configuration-server
+spec:
+  selector:
+    run: cloud-configuration-server
+  ports:
+    - name: cloud-configuration-server-port
+      port: 8888
+      protocol: TCP
+      targetPort: 8888
+      nodePort: 30004
+  type: NodePort
