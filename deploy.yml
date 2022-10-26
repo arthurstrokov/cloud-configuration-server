@@ -23,6 +23,14 @@ spec:
           env:
             - name: spring.mvc.servlet.path
               value: /cloud-configuration-server
+            - name: SERVER-PORT
+              value: "8888"
+            - name: EUREKA-DEFAULT-ZONE
+              value: "http://eureka-server:8761/eureka/"
+            - name: EUREKA-INSTANCE-HOSTNAME
+              value: eureka-server
+            - name: ZIPKIN-BASE-URL
+              value: "http://10.0.2.2:9411"
           ports:
             - containerPort: 8888
 ---
@@ -41,8 +49,10 @@ spec:
   selector:
     run: cloud-configuration-server
   ports:
-    - name: port-1
+    - name: cloud-configuration-server-port
       port: 8888
       protocol: TCP
       targetPort: 8888
   type: LoadBalancer
+  externalIPs:
+    - 192.168.59.100

@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.gmail.arthurstrokov'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -48,12 +48,12 @@ tasks.named('test') {
 
 docker {
     springBootApplication {
-        baseImage = 'openjdk:11'
+        baseImage = 'openjdk:17-alpine'
         ports = [8888]
         images = [
                 'arthurstrokov/cloud-configuration-server:latest',
                   'arthurstrokov/cloud-configuration-server:v0.0.0'
         ]
-        jvmArgs = ['-Dspring.profiles.active=native', '-Xmx2048m']
+        jvmArgs = ['-Xmx2048m']
     }
 }
