@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: ${SERVER-PORT}
 ---
 spring:
   main:
@@ -14,7 +14,7 @@ spring:
         native:
           search-locations: classpath:/configuration/{application}
   zipkin:
-    base-url: http://10.0.2.2:9411
+    base-url: ${ZIPKIN-BASE-URL}
   devtools:
     remote:
       secret: secret
@@ -22,11 +22,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.59.106:30003/eureka/
+      defaultZone: ${EUREKA-DEFAULT-ZONE}
     healthcheck:
       enabled: true
   instance:
     preferIpAddress: false
+    hostname: ${EUREKA-INSTANCE-HOSTNAME}
 ---
 # Конфиг для актуатора, чтобы был доступен по /metrics для прометея
 management:

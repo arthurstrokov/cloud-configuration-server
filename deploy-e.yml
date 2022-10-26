@@ -20,6 +20,15 @@ spec:
         - name: cloud-configuration-server
           image: arthurstrokov/cloud-configuration-server:v0.0.0
           imagePullPolicy: IfNotPresent
+          env:
+            - name: SERVER-PORT
+              value: "30009"
+            - name: EUREKA-DEFAULT-ZONE
+              value: "http://192.168.59.106:30003/eureka/"
+            - name: EUREKA-INSTANCE-HOSTNAME
+              value: "192.168.59.106"
+            - name: ZIPKIN-BASE-URL
+              value: "http://10.0.2.2:9411"
           ports:
             - containerPort: 8888
 ---
@@ -34,8 +43,8 @@ spec:
     run: cloud-configuration-server
   ports:
     - name: cloud-configuration-server-port
-      port: 8888
+      port: 30009
       protocol: TCP
-      targetPort: 8888
-      nodePort: 30004
+      targetPort: 30009
+      nodePort: 30009
   type: NodePort

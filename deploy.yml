@@ -23,6 +23,14 @@ spec:
           env:
             - name: spring.mvc.servlet.path
               value: /cloud-configuration-server
+            - name: SERVER-PORT
+              value: "30004"
+            - name: EUREKA-DEFAULT-ZONE
+              value: "http://192.168.59.106:30003/eureka/"
+            - name: EUREKA-INSTANCE-HOSTNAME
+              value: "192.168.59.106"
+            - name: ZIPKIN-BASE-URL
+              value: "http://10.0.2.2:9411"
           ports:
             - containerPort: 8888
 ---
