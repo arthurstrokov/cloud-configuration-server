@@ -28,7 +28,7 @@ spec:
             - name: EUREKA-DEFAULT-ZONE
               value: "http://eureka-server:8761/eureka/"
             - name: EUREKA-INSTANCE-HOSTNAME
-              value: eureka-server
+              value: cloud-configuration-server
             - name: ZIPKIN-BASE-URL
               value: "http://10.0.2.2:9411"
           ports:
