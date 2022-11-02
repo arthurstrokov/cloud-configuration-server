@@ -21,12 +21,12 @@ spec:
           image: arthurstrokov/cloud-configuration-server:v0.0.0
           imagePullPolicy: IfNotPresent
           env:
-            - name: spring.mvc.servlet.path
-              value: /cloud-configuration-server
+#            - name: spring.mvc.servlet.path
+#              value: /cloud-configuration-server
             - name: SERVER-PORT
               value: "8888"
             - name: EUREKA-DEFAULT-ZONE
-              value: "http://eureka-server:8761/eureka/"
+              value: "http://192.168.59.106:30001/eureka"
             - name: EUREKA-INSTANCE-HOSTNAME
               value: cloud-configuration-server
             - name: ZIPKIN-BASE-URL
