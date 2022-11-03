@@ -28,7 +28,11 @@
     ]
   },
   "env": {
-    "CONTAINER_NAME": "cloud-configuration-server"
+    "CONTAINER_NAME": "cloud-configuration-server",
+    "EUREKA-DEFAULT-ZONE": "http://host.docker.internal:8761/eureka/",
+    "EUREKA-INSTANCE-HOSTNAME": "cloud-configuration-server",
+    "ZIPKIN-BASE-URL": "http://host.docker.internal:9411",
+    "SERVER-PORT": "8888"
   },
   "healthChecks": [
     {
