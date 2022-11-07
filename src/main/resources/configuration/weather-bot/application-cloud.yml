@@ -32,3 +32,10 @@ logging:
         boot: INFO
       hibernate: ERROR
     com.gmail.arthurstrokov.weatherbot: DEBUG
+---
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "*" ]
