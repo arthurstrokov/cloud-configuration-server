@@ -1,0 +1,29 @@
+spring:
+  main:
+    banner-mode: off
+---
+lingvo:
+  api:
+    key: ${API-KEY}
+    srcLang: 1033
+    dstLang: 1049
+---
+bot:
+  name: EnglishWordTranslatorBot
+  token: ${BOT-TOKEN}
+
+---
+server:
+  port: ${SERVER-PORT:8080}
+---
+logging:
+  level:
+    root: info
+    org.springframework.cloud.config.client: debug
+---
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "*" ]
