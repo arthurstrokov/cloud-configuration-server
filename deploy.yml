@@ -26,11 +26,11 @@ spec:
             - name: SERVER-PORT
               value: "8888"
             - name: EUREKA-DEFAULT-ZONE
-              value: "http://192.168.59.106:30001/eureka"
+              value: "http://192.168.59.101:30001/eureka"
             - name: EUREKA-INSTANCE-HOSTNAME
               value: cloud-configuration-server
             - name: ZIPKIN-BASE-URL
-              value: "http://10.0.2.2:9411"
+              value: "http://host.docker.internal:9411"
           ports:
             - containerPort: 8888
 ---
