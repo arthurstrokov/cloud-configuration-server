@@ -1,0 +1,34 @@
+spring:
+  main:
+    banner-mode: off
+---
+bot:
+  name: ${BOT-NAME}
+  token: ${BOT-TOKEN}
+  chatId: ${BOT-CHAT-ID}
+---
+open:
+  api:
+    key: ${OPEN-API-KEY}
+    url:
+      base-url: ${BASE-URL}
+    parameters:
+      current: /weather
+      forecast: /forecast
+      city: Minsk
+      mode: json
+      units: metric
+      lang: en
+      cnt: 4
+---
+server:
+  port: ${SERVER-PORT:8080}
+---
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+        boot: INFO
+      hibernate: ERROR
+    com.gmail.arthurstrokov.weatherbot: DEBUG
