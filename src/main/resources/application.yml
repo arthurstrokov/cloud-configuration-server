@@ -14,7 +14,7 @@ spring:
         native:
           search-locations: classpath:/configuration/{application}
   zipkin:
-    enabled: false
+    enabled: ${ZIPKIN-ENABLED:true}
     base-url: ${ZIPKIN-BASE-URL:http://localhost:9411}
   devtools:
     remote:

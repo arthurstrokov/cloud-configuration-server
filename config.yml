@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloud-configuration-server-config
+  namespace: default
+data:
+  SERVER-PORT: "8888"
+  EUREKA-DEFAULT-ZONE: "http://192.168.59.100:30001/eureka"
+  EUREKA-INSTANCE-HOSTNAME: cloud-configuration-server
+  ZIPKIN-BASE-URL: "http://host.docker.internal:9411"
+  ZIPKIN-ENABLED: "false"
