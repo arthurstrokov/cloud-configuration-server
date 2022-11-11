@@ -5,8 +5,8 @@ spring:
 lingvo:
   api:
     key: ${API-KEY}
-    srcLang: 1033
-    dstLang: 1049
+    srcLang: ${SRC-LANG:1033}
+    dstLang: ${DST-LANG:1049}
 ---
 bot:
   name: EnglishWordTranslatorBot
