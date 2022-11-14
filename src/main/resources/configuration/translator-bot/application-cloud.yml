@@ -20,6 +20,19 @@ logging:
   level:
     root: info
     org.springframework.cloud.config.client: debug
+    com:
+      gmail:
+        arthurstrokov:
+          translatorbot:
+            gateway:
+              TranslatorBotFeignClient: debug
+---
+feign:
+  client:
+    config:
+      default:
+        errorDecoder: com.gmail.arthurstrokov.translatorbot.configuration.RetreiveMessageErrorDecoder
+        loggerLevel: basic
 ---
 # Actuator
 management:
