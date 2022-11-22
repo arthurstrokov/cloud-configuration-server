@@ -5,8 +5,8 @@ spring:
 lingvo:
   api:
     key: ${API-KEY}
-    srcLang: 1033
-    dstLang: 1049
+    srcLang: ${SRC-LANG:1033}
+    dstLang: ${DST-LANG:1049}
 ---
 bot:
   name: EnglishWordTranslatorBot
@@ -20,6 +20,19 @@ logging:
   level:
     root: info
     org.springframework.cloud.config.client: debug
+    com:
+      gmail:
+        arthurstrokov:
+          translatorbot:
+            gateway:
+              TranslatorBotFeignClient: debug
+---
+feign:
+  client:
+    config:
+      default:
+        errorDecoder: com.gmail.arthurstrokov.translatorbot.configuration.RetreiveMessageErrorDecoder
+        loggerLevel: basic
 ---
 # Actuator
 management:
