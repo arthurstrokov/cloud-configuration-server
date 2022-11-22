@@ -1,0 +1,74 @@
+---
+# bootstrap.yml
+spring:
+  application:
+    name: application-name
+  profiles:
+    active: cloud
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-configuration-server
+      enabled: true
+      failFast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA-DEFAULT-ZONE:http://localhost:8761/eureka/}
+    healthcheck:
+      enabled: true
+  instance:
+    preferIpAddress: false
+    hostname: ${EUREKA-INSTANCE-HOSTNAME:localhost}
+
+#  implementation 'org.springframework.cloud:spring-cloud-starter-config'
+#  implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+#  implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+---
+# application.yml
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: resume-storage-project
+  profiles:
+    active: cloud # dev cloud
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      enabled: true
+      failFast: true
+      uri: http://${CONFIG_URL:localhost:8888}/ # marathon-lb/marathon-deploy.json
+      #      uri: ${CONFIG_URI:http://cloud-configuration-server:8888} # for docker-compose using
+      #      uri: http://host.docker.internal:8888/ # or ip inside docker container or localhost for docker container local using
+      retry:
+        max-attempts: 6
+#  implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+---
+# bootstrap.yml
+spring:
+  application:
+    name: application-name
+  cloud:
+    config:
+      uri: http://${config.server.host}
+      enabled: ${spring.cloud.config.enabled:true}
+      failFast: true
+
+#  <dependency>
+#  <groupId>org.springframework.cloud</groupId>
+#  <artifactId>spring-cloud-starter-config</artifactId>
+#  <version>3.1.5</version>
+#  </dependency>
+#  <dependency>
+#  <groupId>org.springframework.cloud</groupId>
+#  <artifactId>spring-cloud-starter-bootstrap</artifactId>
+#  <version>3.1.5</version>
+#  </dependency>
