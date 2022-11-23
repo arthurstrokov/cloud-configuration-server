@@ -46,6 +46,12 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+test {
+    minHeapSize = "128m" // initial heap size
+    maxHeapSize = "256m" // maximum heap size
+    jvmArgs '-XX:+PrintGC' // mem argument for the test JVM
+}
+
 docker {
     springBootApplication {
         baseImage = 'openjdk:17-alpine'
