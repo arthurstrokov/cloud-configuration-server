@@ -1,6 +1,6 @@
 version: "3.1"
 services:
-  eureka-server:
+  cloud-configuration-server:
     image: arthurstrokov/cloud-configuration-server:latest
     container_name: cloud-configuration-server
     ports:
